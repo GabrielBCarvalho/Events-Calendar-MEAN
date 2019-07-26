@@ -1,0 +1,32 @@
+<button mat-raised-button color = "primary" routerLink = "/add-event"> Adicionar evento </button>
+<br><br>
+
+<div *ngIf="event == undefined || event.length == 0">
+    <p> Sem novos eventos </p>
+</div>
+
+<div *ngIf="events != undefined && events && events.length >0">
+    <table mdbTable responsive = "true">
+
+        <thead class="black white-text">
+        <tr>
+            <th *ngFor="let head of headElements" scope="col" class="th-lg">{{head}} </th>
+        </tr>
+        </thead>
+        
+        <tbody>
+        <tr mdbTableCol *ngFor="let event of events">
+            <td>{{event.description}}</td>
+            <td>{{event.dateBegin}}</td>
+            <td>{{event.dateEnd}}</td>
+            <td>
+                <div class = "row">
+                    <button class = "btn btn-primary" (click)="editEvent(event._id)">Editar</button>
+                    <button class = "btn btn-secondary" (click)="deleteEvent(event._id)">Excluir</button>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+</div>
